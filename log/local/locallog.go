@@ -31,5 +31,6 @@ func NewLogger(filepath string) log.Logger {
 		"time:", log.DefaultTimestampUTC,
 		"caller", log.DefaultCaller,
 	)
+	_ = level.Info(logger)
 	return logger
 }
