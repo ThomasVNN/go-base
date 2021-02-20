@@ -18,7 +18,7 @@ type errorer interface {
 	error() error
 }
 
-// MakeHandler builds a go-kit http transport and returns it
+// MakeHandler builds a go-base http transport and returns it
 func MakeHandler(logger golog.Logger) http.Handler {
 	options := []gotransport.ServerOption{
 		gotransport.ServerErrorEncoder(errorEncoder),

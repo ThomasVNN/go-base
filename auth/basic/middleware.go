@@ -8,7 +8,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"github.com/ThomasVNN/go-base/endpoint"
-	gotransport "github.com/ThomasVNN/go-base/transport/http"
+	httptransport "github.com/ThomasVNN/go-base/transport/http"
 	"net/http"
 	"strings"
 )
@@ -18,7 +18,7 @@ type AuthError struct {
 	Realm string
 }
 
-// StatusCode is an implementation of the StatusCoder interface in go-kit/http.
+// StatusCode is an implementation of the StatusCoder interface in go-base/http.
 func (AuthError) StatusCode() int {
 	return http.StatusUnauthorized
 }
@@ -28,7 +28,7 @@ func (AuthError) Error() string {
 	return http.StatusText(http.StatusUnauthorized)
 }
 
-// Headers is an implementation of the Headerer interface in go-kit/http.
+// Headers is an implementation of the Headerer interface in go-base/http.
 func (e AuthError) Headers() http.Header {
 	return http.Header{
 		"Content-Type":           []string{"text/plain; charset=utf-8"},
@@ -69,7 +69,7 @@ func AuthMiddleware(requiredUser, requiredPassword, realm string) endpoint.Middl
 
 	return func(next endpoint.Endpoint) endpoint.Endpoint {
 		return func(ctx context.Context, request interface{}) (interface{}, error) {
-			auth, ok := ctx.Value(gotransport.ContextKeyRequestAuthorization).(string)
+			auth, ok := ctx.Value(httptransport.ContextKeyRequestAuthorization).(string)
 			if !ok {
 				return nil, AuthError{realm}
 			}

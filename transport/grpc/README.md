@@ -1,20 +1,20 @@
 # grpc
 
 [gRPC](http://www.grpc.io/) is an excellent, modern IDL and transport for
-microservices. If you're starting a greenfield project, go-kit strongly
+microservices. If you're starting a greenfield project, go-base strongly
 recommends gRPC as your default transport.
 
 One important note is that while gRPC supports streaming requests and replies,
-go-kit does not. You can still use streams in your service, but their
-implementation will not be able to take advantage of many go-kit features like middleware.
+go-base does not. You can still use streams in your service, but their
+implementation will not be able to take advantage of many go-base features like middleware.
 
-Using gRPC and go-kit together is very simple.
+Using gRPC and go-base together is very simple.
 
 First, define your service using protobuf3. This is explained
 [in gRPC documentation](http://www.grpc.io/docs/#defining-a-service).
 See
 [add.proto](https://github.com/ThomasVNN/go-base/blob/ec8b02591ee873433565a1ae9d317353412d1d27/examples/addsvc/pb/add.proto)
-for an example. Make sure the proto definition matches your service's go-kit
+for an example. Make sure the proto definition matches your service's go-base
 (interface) definition.
 
 Next, get the protoc compiler.
@@ -48,7 +48,7 @@ for an example.
 
 That's it!
 The gRPC binding can be bound to a listener and serve normal gRPC requests.
-And within your service, you can use standard go-kit components and idioms.
+And within your service, you can use standard go-base components and idioms.
 See [addsvc](https://github.com/ThomasVNN/go-base/tree/master/examples/addsvc) for
-a complete working example with gRPC support. And remember: go-kit services
+a complete working example with gRPC support. And remember: go-base services
 can support multiple transports simultaneously.

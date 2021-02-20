@@ -1,5 +1,5 @@
 // Package logrus provides an adapter to the
-// go-kit log.Logger interface.
+// go-base log.Logger interface.
 package logrus
 
 import (

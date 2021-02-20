@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"testing"
 
-	gotransport "github.com/ThomasVNN/go-base/transport/http"
+	httptransport "github.com/ThomasVNN/go-base/transport/http"
 )
 
 func TestWithBasicAuth(t *testing.T) {
@@ -32,7 +32,7 @@ func TestWithBasicAuth(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.WithValue(context.TODO(), gotransport.ContextKeyRequestAuthorization, tt.authHeader)
+			ctx := context.WithValue(context.TODO(), httptransport.ContextKeyRequestAuthorization, tt.authHeader)
 
 			result, err := AuthMiddleware(requiredUser, requiredPassword, realm)(passedValidation)(ctx, nil)
 			if result != tt.want.result || err != tt.want.err {

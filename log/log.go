@@ -204,6 +204,6 @@ func NewLogger(filepath string) Logger {
 		"time:", DefaultTimestampUTC,
 		"caller", DefaultCaller,
 	)
-	
+
 	return logger
 }
