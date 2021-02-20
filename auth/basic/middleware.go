@@ -7,11 +7,10 @@ import (
 	"crypto/subtle"
 	"encoding/base64"
 	"fmt"
-	"net/http"
-	"strings"
-
 	"github.com/ThomasVNN/go-base/endpoint"
 	gotransport "github.com/ThomasVNN/go-base/transport/http"
+	"net/http"
+	"strings"
 )
 
 // AuthError represents an authorization error.

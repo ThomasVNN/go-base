@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/BE_eKYC/helpers/storage/local"
+	"github.com/ThomasVNN/go-base/storage/local"
 	"github.com/aws/aws-sdk-go/aws"
 	awssession "github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/secretsmanager"
