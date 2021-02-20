@@ -1,6 +1,10 @@
 package log
 
-import "errors"
+import (
+	"errors"
+	"github.com/ThomasVNN/go-base/log/level"
+	"os"
+)
 
 // Logger is the fundamental interface for all log operations. Log creates a
 // log event from keyvals, a variadic sequence of alternating keys and values.
@@ -176,4 +180,31 @@ type LoggerFunc func(...interface{}) error
 // Log implements Logger by calling f(keyvals...).
 func (f LoggerFunc) Log(keyvals ...interface{}) error {
 	return f(keyvals...)
+}
+// NewLogger ...
+func NewLogger(filepath string) Logger {
+	var logger Logger
+
+	//file, err := os.OpenFile(filepath, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
+
+	//if err != nil {
+	//	fmt.Fprintf(os.Stderr, "Error opening log file: %v\n", err)
+	//	os.Exit(1)
+	//}
+
+	//if local.Getenv("ENVIRONMENT") == "dev" {
+	logger = NewLogfmtLogger(os.Stdout)
+	//} else {
+	//	logger = log.NewJSONLogger(log.NewSyncWriter(file))
+	//}
+	logger = NewSyncLogger(logger)
+	logger = With(logger,
+		"service", "account",
+		"hostname", "staging-1",
+		"session", "1ce3f6v",
+		"time:", DefaultTimestampUTC,
+		"caller", DefaultCaller,
+	)
+	_ = level.Info(logger)
+	return logger
 }
