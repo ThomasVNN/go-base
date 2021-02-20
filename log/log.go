@@ -2,7 +2,6 @@ package log
 
 import (
 	"errors"
-	"github.com/ThomasVNN/go-base/log/level"
 	"os"
 )
 
@@ -205,6 +204,6 @@ func NewLogger(filepath string) Logger {
 		"time:", DefaultTimestampUTC,
 		"caller", DefaultCaller,
 	)
-	_ = level.Info(logger)
+	
 	return logger
 }
