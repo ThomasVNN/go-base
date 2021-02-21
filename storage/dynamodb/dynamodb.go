@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
 )
 
-func Connection() (dynamodbiface.DynamoDBAPI, error) {
+func Connection() (*dynamodbiface.DynamoDBAPI, error) {
 	region := local.Getenv("AWS_REGION")
 	awsSession, err := session.NewSession(&aws.Config{
 		Region: aws.String(region),
@@ -17,7 +17,7 @@ func Connection() (dynamodbiface.DynamoDBAPI, error) {
 	if err != nil {
 		return nil, err
 	}
-	dynaClient := dynamodb.New(awsSession)
-
-	return dynaClient, nil
+	var dynaClient dynamodbiface.DynamoDBAPI
+	dynaClient = dynamodb.New(awsSession)
+	return &dynaClient, nil
 }
